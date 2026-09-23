@@ -105,10 +105,3 @@ curl -i -X DELETE http://localhost:8080/api/tareas/4
 ## Pruebas
 `mvn test` ejecuta `CapasCompartidasTest` (MockMvc): tarea creada por la API visible en la vista web, 201/204/404/400, PATCH, validación del formulario, PRG, edición sin perder el estado `completada` y filtros combinables.
 
-## Capturas de pantalla
-![Lista de tareas con filtros](capturas/lista-tareas.png)
-![Formulario con error de validación](capturas/formulario-error.png)
-![POST 201 Created](capturas/postman-post-201.png)
-![POST 400 Bad Request](capturas/postman-post-400.png)
-![PATCH, DELETE y 404](capturas/postman-patch-delete.png)
-![Tarea de la API visible en la vista web](capturas/vista-comparte-datos.png)
