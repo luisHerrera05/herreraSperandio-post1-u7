@@ -1,0 +1,7 @@
+com/universidad/tareas/controller/TareaApiController.class
+com/universidad/tareas/controller/TareaController.class
+com/universidad/tareas/TareasApplication.class
+com/universidad/tareas/controller/ApiErrorHandler.class
+com/universidad/tareas/model/Tarea.class
+com/universidad/tareas/service/TareaService.class
+com/universidad/tareas/model/Prioridad.class

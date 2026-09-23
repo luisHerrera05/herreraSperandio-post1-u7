@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${accion} + ' Tarea'">Tarea</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        label { display: block; margin-top: 1rem; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 8px; box-sizing: border-box; margin-top: 4px; }
+        .error { color: #C62828; font-size: 0.9rem; display: block; margin-top: 4px; }
+        .btn { padding: 8px 16px; margin-top: 1rem; cursor: pointer; }
+        .btn-save { background: #065A82; color: white; border: none; border-radius: 4px; }
+        .btn-cancel { background: #808080; color: white; text-decoration: none; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1 th:text="${accion} + ' Tarea'">Tarea</h1>
+
+    <form th:action="@{/tareas/guardar}" th:object="${tarea}" method="post">
+        <!-- Campos ocultos: id (necesario en edición) y completada.
+             Sin "completada", editar una tarea ya completada la volvería a "Pendiente",
+             porque el formulario crea un objeto Tarea nuevo con completada=false por defecto. -->
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{completada}">
+
+        <label for="titulo">Título:</label>
+        <input type="text" th:field="*{titulo}" id="titulo">
+        <span class="error" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea th:field="*{descripcion}" id="descripcion" rows="3"></textarea>
+        <span class="error" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></span>
+
+        <label for="prioridad">Prioridad:</label>
+        <select th:field="*{prioridad}" id="prioridad">
+            <option th:each="p : ${prioridades}" th:value="${p}" th:text="${p}"></option>
+        </select>
+        <span class="error" th:if="${#fields.hasErrors('prioridad')}" th:errors="*{prioridad}"></span>
+
+        <label for="fechaLimite">Fecha límite:</label>
+        <input type="date" th:field="*{fechaLimite}" id="fechaLimite">
+        <span class="error" th:if="${#fields.hasErrors('fechaLimite')}" th:errors="*{fechaLimite}"></span>
+
+        <br>
+        <button type="submit" class="btn btn-save" th:text="${accion} + ' Tarea'">Guardar</button>
+        <a th:href="@{/tareas}" class="btn btn-cancel">Cancelar</a>
+    </form>
+</body>
+</html>
